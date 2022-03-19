@@ -6,21 +6,7 @@ resource "aws_instance" "ubuntu" {
     security_groups = [aws_security_group.allow_tls.id]
     key_name = "mykey"
     
-    provisioner "file" {
-    source      = "./myScript.sh"
-    destination = "/home/ubuntu/myScript.sh"
-    }
 
-    
-    
-    connection {
-      type        = "ssh"
-      host        = self.public_ip
-      user        = "ubuntu"
-      private_key = file("./mykey.pem")
-      timeout     = "4m"
-    
-   }
      tags = {
       Name = "CodeDeployDemo"
        }
